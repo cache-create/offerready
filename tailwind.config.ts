@@ -15,7 +15,7 @@ export default {
     extend: {
       fontFamily: {
         heading: ['Lora', 'serif'],
-        sans: ['Source Sans 3', 'sans-serif'],
+        sans: ['"Source Sans 3"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
