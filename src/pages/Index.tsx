@@ -169,6 +169,16 @@ const Index = () => {
               sacrificing your time.
             </p>
           </AnimatedSection>
+          <AnimatedSection delay={300}>
+            <Button
+              size="lg"
+              variant="secondary"
+              onClick={() => setIsModalOpen(true)}
+              className="mt-8 px-8 text-lg"
+            >
+              Join the Waitlist
+            </Button>
+          </AnimatedSection>
         </div>
       </section>
 
