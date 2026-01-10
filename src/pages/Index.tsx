@@ -41,7 +41,11 @@ const Index = () => {
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-sky-light/50 to-background" />
         <div className="container mx-auto px-4 text-center">
           <AnimatedSection>
-            <img src={offerReadyLogo} alt="Offer Ready" className="mx-auto h-24 md:h-32 mb-8" />
+            <img 
+              src={offerReadyLogo} 
+              alt="Offer Ready" 
+              className="mx-auto w-full max-w-xs md:max-w-sm lg:max-w-md h-auto mb-8 object-contain" 
+            />
           </AnimatedSection>
           <AnimatedSection delay={100}>
             <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl font-heading">
@@ -321,7 +325,11 @@ const Index = () => {
       <footer className="border-t bg-background py-8">
         <div className="container mx-auto px-4 text-center">
           <AnimatedSection>
-            <img src={offerReadyLogo} alt="Offer Ready" className="mx-auto h-24 mb-4" />
+            <img 
+              src={offerReadyLogo} 
+              alt="Offer Ready" 
+              className="mx-auto w-full max-w-xs md:max-w-md h-auto mb-4 object-contain" 
+            />
             <p className="text-2xl font-bold text-primary font-heading">Be Offer Ready.</p>
             <p className="mt-4 text-sm text-muted-foreground">
               © {new Date().getFullYear()} Offer Ready. All rights reserved.
