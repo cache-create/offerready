@@ -49,7 +49,8 @@ const Index = () => {
           </AnimatedSection>
           <AnimatedSection delay={100}>
             <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl font-heading">
-              Pre-Approval Letters & Loan Estimates.{" "}
+              Pre-Approval Letters & Loan Estimates.
+              <br />
               <span className="text-accent">Done in Minutes.</span>
             </h1>
           </AnimatedSection>
