@@ -44,7 +44,7 @@ const Index = () => {
             <img 
               src={offerReadyLogo} 
               alt="Offer Ready" 
-              className="mx-auto w-full max-w-xs md:max-w-sm lg:max-w-md h-auto mb-8 object-contain" 
+              className="mx-auto w-auto max-w-[200px] md:max-w-[280px] lg:max-w-[320px] h-auto mb-4 object-contain" 
             />
           </AnimatedSection>
           <AnimatedSection delay={100}>
@@ -328,7 +328,7 @@ const Index = () => {
             <img 
               src={offerReadyLogo} 
               alt="Offer Ready" 
-              className="mx-auto w-full max-w-xs md:max-w-md h-auto mb-4 object-contain" 
+              className="mx-auto w-auto max-w-[180px] md:max-w-[220px] h-auto mb-2 object-contain" 
             />
             <p className="text-2xl font-bold text-primary font-heading">Be Offer Ready.</p>
             <p className="mt-4 text-sm text-muted-foreground">
