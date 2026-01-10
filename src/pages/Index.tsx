@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { WaitlistModal } from "@/components/WaitlistModal";
 import { Clock, Shield, Star, Settings, FileText, ClipboardList, CheckCircle } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import offerReadyLogo from "@/assets/offer-ready-logo.png";
 
 const AnimatedSection = ({ 
   children, 
@@ -39,7 +40,7 @@ const Index = () => {
       <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-2">
-            <span className="text-xl font-bold text-primary font-heading">Offer Ready</span>
+            <img src={offerReadyLogo} alt="Offer Ready" className="h-10" />
           </div>
           <Button onClick={() => setIsModalOpen(true)}>Join the Waitlist</Button>
         </div>
@@ -327,6 +328,7 @@ const Index = () => {
       <footer className="border-t bg-background py-8">
         <div className="container mx-auto px-4 text-center">
           <AnimatedSection>
+            <img src={offerReadyLogo} alt="Offer Ready" className="mx-auto h-12 mb-4" />
             <p className="text-2xl font-bold text-primary font-heading">Be Offer Ready.</p>
             <p className="mt-4 text-sm text-muted-foreground">
               © {new Date().getFullYear()} Offer Ready. All rights reserved.
