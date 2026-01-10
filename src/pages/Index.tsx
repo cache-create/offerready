@@ -41,7 +41,7 @@ const Index = () => {
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-sky-light/50 to-background" />
         <div className="container mx-auto px-4 text-center">
           <AnimatedSection>
-            <img src={offerReadyLogo} alt="Offer Ready" className="mx-auto h-24 md:h-32 mb-8" />
+            <img src={offerReadyLogo} alt="Offer Ready" className="mx-auto h-72 md:h-96 mb-8" />
           </AnimatedSection>
           <AnimatedSection delay={100}>
             <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl font-heading">
