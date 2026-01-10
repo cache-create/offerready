@@ -79,7 +79,7 @@ const Index = () => {
             <Button
               size="lg"
               onClick={() => setIsModalOpen(true)}
-              className="mt-8 px-8 text-lg"
+              className="mt-8 px-10 py-6 text-lg"
             >
               Join the Waitlist
             </Button>
@@ -172,7 +172,7 @@ const Index = () => {
               size="lg"
               variant="secondary"
               onClick={() => setIsModalOpen(true)}
-              className="mt-8 px-8 text-lg"
+              className="mt-8 px-10 py-6 text-lg"
             >
               Join the Waitlist
             </Button>
