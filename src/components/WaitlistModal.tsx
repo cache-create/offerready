@@ -48,9 +48,25 @@ export const WaitlistModal = ({ open, onOpenChange }: WaitlistModalProps) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
+      try {
+        await fetch("http://www.myOfferReady.com/index.cfm?event=promo", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            phone: formData.phone.trim(),
+          }),
+          mode: "no-cors",
+        });
+      } catch (error) {
+        console.error("Failed to submit to webhook:", error);
+      }
       setIsSubmitted(true);
     }
   };
