@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offer Ready - Pre-Approval Letters & Loan Estimates in Minutes</title>
+    <meta name="description" content="Offer Ready helps loan officers generate compliant pre-approval letters and loan estimates in minutes. Built for modern loan officers who want their time back." />
+    <meta name="author" content="Offer Ready" />
+
+    <meta property="og:title" content="Offer Ready - Pre-Approval Letters & Loan Estimates in Minutes" />
+    <meta property="og:description" content="Built for loan officers who want their time back. Generate compliant documents on the go." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@OfferReady" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset and Base Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 220 40% 13%;
+            --card: 0 0% 100%;
+            --card-foreground: 220 40% 13%;
+            --popover: 0 0% 100%;
+            --popover-foreground: 220 40% 13%;
+            --primary: 220 60% 25%;
+            --primary-foreground: 0 0% 100%;
+            --secondary: 215 30% 94%;
+            --secondary-foreground: 220 40% 13%;
+            --muted: 215 30% 96%;
+            --muted-foreground: 220 15% 45%;
+            --accent: 210 80% 55%;
+            --accent-foreground: 0 0% 100%;
+            --destructive: 0 84.2% 60.2%;
+            --destructive-foreground: 0 0% 100%;
+            --border: 215 25% 88%;
+            --input: 215 25% 88%;
+            --ring: 220 60% 25%;
+            --radius: 0.5rem;
+            --navy: 220 60% 25%;
+            --navy-light: 215 45% 40%;
+            --navy-lighter: 210 50% 60%;
+            --sky: 205 85% 65%;
+            --sky-light: 205 90% 92%;
+        }
+
+        body {
+            font-family: 'Source Sans 3', ui-sans-serif, system-ui, sans-serif;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lora', serif;
+        }
+
+        /* Utility Classes */
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .text-center { text-align: center; }
+        .font-bold { font-weight: 700; }
+        .font-semibold { font-weight: 600; }
+        .font-medium { font-weight: 500; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .gap-3 { gap: 0.75rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-8 { gap: 2rem; }
+        .space-y-2 > * + * { margin-top: 0.5rem; }
+        .space-y-3 > * + * { margin-top: 0.75rem; }
+        .space-y-4 > * + * { margin-top: 1rem; }
+        .w-full { width: 100%; }
+        .h-full { height: 100%; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .mt-3 { margin-top: 0.75rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .mt-8 { margin-top: 2rem; }
+        .mt-12 { margin-top: 3rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .px-10 { padding-left: 2.5rem; padding-right: 2.5rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+        .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+        .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .p-3 { padding: 0.75rem; }
+        .p-8 { padding: 2rem; }
+        .rounded-lg { border-radius: 0.5rem; }
+        .rounded-xl { border-radius: 0.75rem; }
+        .rounded-full { border-radius: 9999px; }
+        .border { border-width: 1px; border-color: hsl(var(--border)); }
+        .border-t { border-top-width: 1px; border-top-color: hsl(var(--border)); }
+        .shadow-sm { box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); }
+        .shadow-md { box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .fixed { position: fixed; }
+        .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+        .overflow-hidden { overflow: hidden; }
+        .min-h-screen { min-height: 100vh; }
+        .max-w-2xl { max-width: 42rem; }
+        .max-w-3xl { max-width: 48rem; }
+        .max-w-4xl { max-width: 56rem; }
+        .max-w-md { max-width: 28rem; }
+        .object-contain { object-fit: contain; }
+        .flex-shrink-0 { flex-shrink: 0; }
+        .text-left { text-align: left; }
+
+        /* Color Classes */
+        .text-foreground { color: hsl(var(--foreground)); }
+        .text-primary { color: hsl(var(--primary)); }
+        .text-accent { color: hsl(var(--accent)); }
+        .text-muted-foreground { color: hsl(var(--muted-foreground)); }
+        .text-primary-foreground { color: hsl(var(--primary-foreground)); }
+        .text-destructive { color: hsl(var(--destructive)); }
+        .bg-background { background-color: hsl(var(--background)); }
+        .bg-primary { background-color: hsl(var(--primary)); }
+        .bg-secondary { background-color: hsl(var(--secondary)); }
+        .bg-card { background-color: hsl(var(--card)); }
+        .bg-accent\/10 { background-color: hsl(var(--accent) / 0.1); }
+
+        /* Typography */
+        .text-base { font-size: 1rem; line-height: 1.5rem; }
+        .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+        .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+
+        /* Grid */
+        .grid { display: grid; }
+        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 200ms;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            padding: 0.625rem 1.5rem;
+        }
+
+        .btn-primary {
+            background-color: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+        }
+
+        .btn-primary:hover {
+            background-color: hsl(var(--primary) / 0.9);
+        }
+
+        .btn-secondary {
+            background-color: hsl(var(--secondary));
+            color: hsl(var(--secondary-foreground));
+        }
+
+        .btn-secondary:hover {
+            background-color: hsl(var(--secondary) / 0.8);
+        }
+
+        .btn-lg {
+            padding: 1rem 2.5rem;
+            font-size: 1.125rem;
+        }
+
+        /* Input Styles */
+        .input {
+            width: 100%;
+            border-radius: 0.5rem;
+            border: 1px solid hsl(var(--input));
+            background-color: hsl(var(--background));
+            padding: 0.5rem 0.75rem;
+            font-size: 0.875rem;
+            transition: border-color 200ms;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: hsl(var(--ring));
+            box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2);
+        }
+
+        .input.error {
+            border-color: hsl(var(--destructive));
+        }
+
+        /* Label Styles */
+        .label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: hsl(var(--foreground));
+        }
+
+        /* Card Styles */
+        .card {
+            border-radius: 0.75rem;
+            border: 1px solid hsl(var(--border));
+            background-color: hsl(var(--card));
+            padding: 2rem;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            transition: box-shadow 200ms;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            padding: 1rem;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: hsl(var(--background));
+            border-radius: 0.75rem;
+            padding: 2rem;
+            max-width: 28rem;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .modal-header {
+            margin-bottom: 1rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            font-family: 'Lora', serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-description {
+            color: hsl(var(--muted-foreground));
+            font-size: 0.875rem;
+        }
+
+        /* Icon Wrapper */
+        .icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 9999px;
+        }
+
+        .icon-wrapper-sm {
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+
+        .icon-wrapper-lg {
+            width: 4rem;
+            height: 4rem;
+        }
+
+        /* Gradient Background */
+        .gradient-bg {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(to bottom, hsl(var(--sky-light) / 0.5), hsl(var(--background)));
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 700ms ease-out, transform 700ms ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Grid */
+        @media (min-width: 640px) {
+            .sm\:flex-row { flex-direction: row; }
+            .sm\:justify-center { justify-content: center; }
+            .sm\:max-w-md { max-width: 28rem; }
+        }
+
+        @media (min-width: 768px) {
+            .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .md\:text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+            .md\:text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+            .md\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+            .md\:text-5xl { font-size: 3rem; line-height: 1; }
+            .md\:py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+            .md\:py-28 { padding-top: 7rem; padding-bottom: 7rem; }
+            .md\:max-w-\[220px\] { max-width: 220px; }
+            .md\:max-w-\[280px\] { max-width: 280px; }
+        }
+
+        @media (min-width: 1024px) {
+            .lg\:text-6xl { font-size: 3.75rem; line-height: 1; }
+            .lg\:max-w-\[320px\] { max-width: 320px; }
+        }
+
+        /* Logo */
+        .logo {
+            width: auto;
+            max-width: 200px;
+            height: auto;
+            margin: 0 auto 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .logo {
+                max-width: 280px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .logo {
+                max-width: 320px;
+            }
+        }
+
+        .logo-footer {
+            width: auto;
+            max-width: 180px;
+            height: auto;
+            margin: 0 auto 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .logo-footer {
+                max-width: 220px;
+            }
+        }
+
+        /* List Styles */
+        ul {
+            list-style: none;
+        }
+
+        /* Transition Delays */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen bg-background">
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden py-12 md:py-20">
+            <div class="gradient-bg"></div>
+            <div class="container mx-auto px-4 text-center">
+                <div class="fade-in">
+                    <img src="src/assets/offer-ready-logo.png" alt="Offer Ready" class="logo" />
+                </div>
+                <div class="fade-in delay-100">
+                    <h1 class="mx-auto max-w-4xl text-4xl font-bold text-foreground md:text-5xl lg:text-6xl">
+                        Pre-Approval Letters & Loan Estimates.
+                        <br />
+                        <span class="text-accent">Done in Minutes.</span>
+                    </h1>
+                </div>
+                <div class="fade-in delay-100">
+                    <p class="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
+                        Built for loan officers who want their time back.
+                    </p>
+                </div>
+                <div class="fade-in delay-200">
+                    <p class="mx-auto mt-4 max-w-3xl text-base text-muted-foreground md:text-lg">
+                        Offer Ready is a modern platform that helps loan officers generate
+                        compliant loan estimates and pre-approval letters on the go—while
+                        staying fully in control.
+                    </p>
+                </div>
+                <div class="fade-in delay-300">
+                    <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+                        <div class="rounded-lg bg-secondary px-6 py-4 text-center">
+                            <p class="text-base font-medium text-foreground md:text-lg">
+                                Your Realtors move faster. Your clients feel confident.
+                                <span class="text-primary">You get your evenings back.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="fade-in delay-400">
+                    <button class="btn btn-primary btn-lg mt-8" onclick="openModal()">
+                        Join the Waitlist
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Offer Ready Section -->
+        <section class="py-20 md:py-28">
+            <div class="container mx-auto px-4">
+                <div class="fade-in">
+                    <h2 class="text-center text-3xl font-bold text-foreground md:text-4xl">
+                        Why Offer Ready
+                    </h2>
+                </div>
+                <div class="mt-12 grid gap-8 grid-cols-1 md:grid-cols-3">
+                    <!-- Save Time -->
+                    <div class="fade-in delay-100">
+                        <div class="card text-center h-full">
+                            <div class="icon-wrapper bg-accent/10 mx-auto mb-4">
+                                <svg class="text-accent" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-foreground">Save Time</h3>
+                            <p class="mt-3 text-muted-foreground">
+                                Create loan estimates and pre-approval letters in minutes on the
+                                go. No more late-night fire drills or constant back-and-forth.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Stay in Control -->
+                    <div class="fade-in delay-200">
+                        <div class="card text-center h-full">
+                            <div class="icon-wrapper bg-accent/10 mx-auto mb-4">
+                                <svg class="text-accent" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-foreground">
+                                Stay in Control
+                            </h3>
+                            <p class="mt-3 text-muted-foreground">
+                                You set the guardrails. Every letter is branded, compliant, and
+                                logged—so nothing goes out without your parameters.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Serve Better -->
+                    <div class="fade-in delay-300">
+                        <div class="card text-center h-full">
+                            <div class="icon-wrapper bg-accent/10 mx-auto mb-4">
+                                <svg class="text-accent" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-foreground">
+                                Serve Better
+                            </h3>
+                            <p class="mt-3 text-muted-foreground">
+                                Give Realtors and clients instant confidence and responsiveness,
+                                without being on call 24/7.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Built for Modern Loan Officer Section -->
+        <section class="bg-primary py-20 md:py-28">
+            <div class="container mx-auto px-4 text-center">
+                <div class="fade-in">
+                    <h2 class="text-3xl font-bold text-primary-foreground md:text-4xl">
+                        Built for the Modern Loan Officer
+                    </h2>
+                </div>
+                <div class="fade-in delay-100">
+                    <p class="mx-auto mt-6 max-w-3xl text-lg text-primary-foreground" style="opacity: 0.9;">
+                        Offer Ready is designed for loan officers who are juggling production,
+                        partnerships, and real life—and want smarter systems that work as hard
+                        as they do.
+                    </p>
+                </div>
+                <div class="fade-in delay-200">
+                    <p class="mx-auto mt-4 max-w-3xl text-lg text-primary-foreground" style="opacity: 0.8;">
+                        Whether you're a top producer, team leader, or growing your business
+                        while raising a family, Offer Ready helps you scale your impact without
+                        sacrificing your time.
+                    </p>
+                </div>
+                <div class="fade-in delay-300">
+                    <button class="btn btn-secondary btn-lg mt-8" onclick="openModal()">
+                        Join the Waitlist
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="py-20 md:py-28">
+            <div class="container mx-auto px-4">
+                <div class="fade-in">
+                    <h2 class="text-center text-3xl font-bold text-foreground md:text-4xl">
+                        How It Works
+                    </h2>
+                </div>
+                <div class="mt-12 grid gap-8 grid-cols-1 md:grid-cols-3">
+                    <!-- Step 1 -->
+                    <div class="fade-in delay-100">
+                        <div class="relative text-center">
+                            <div class="icon-wrapper-lg bg-primary text-2xl font-bold text-primary-foreground mx-auto mb-4">
+                                1
+                            </div>
+                            <div class="flex items-center justify-center mx-auto mb-4" style="width: 3rem; height: 3rem;">
+                                <svg class="text-primary" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-foreground">
+                                You set the rules
+                            </h3>
+                            <p class="mt-3 text-muted-foreground">
+                                Define loan limits, purchase price ranges, and expiration dates.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="fade-in delay-200">
+                        <div class="relative text-center">
+                            <div class="icon-wrapper-lg bg-primary text-2xl font-bold text-primary-foreground mx-auto mb-4">
+                                2
+                            </div>
+                            <div class="flex items-center justify-center mx-auto mb-4" style="width: 3rem; height: 3rem;">
+                                <svg class="text-primary" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-foreground">
+                                Letters are generated instantly
+                            </h3>
+                            <p class="mt-3 text-muted-foreground">
+                                Loan estimates and pre-approval letters are created on
+                                demand—fully branded and compliant.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="fade-in delay-300">
+                        <div class="relative text-center">
+                            <div class="icon-wrapper-lg bg-primary text-2xl font-bold text-primary-foreground mx-auto mb-4">
+                                3
+                            </div>
+                            <div class="flex items-center justify-center mx-auto mb-4" style="width: 3rem; height: 3rem;">
+                                <svg class="text-primary" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-foreground">
+                                Everything stays organized
+                            </h3>
+                            <p class="mt-3 text-muted-foreground">
+                                Every action is logged with a clear audit trail, so you're always
+                                protected.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Built by Loan Officers Section -->
+        <section class="bg-secondary py-20 md:py-28">
+            <div class="container mx-auto px-4 text-center">
+                <div class="fade-in">
+                    <h2 class="text-3xl font-bold text-foreground md:text-4xl">
+                        Built by Loan Officers. Powered by Real Life.
+                    </h2>
+                </div>
+                <div class="fade-in delay-100">
+                    <p class="mx-auto mt-6 max-w-3xl text-lg text-muted-foreground">
+                        Offer Ready was created by top-producing loan officers and working moms
+                        who understand the pressure of always being "on." We built the platform
+                        we wished existed—one that brings speed, simplicity, and balance back
+                        into the mortgage process.
+                    </p>
+                </div>
+                <div class="fade-in delay-200">
+                    <p class="mx-auto mt-4 max-w-2xl text-lg font-medium text-primary">
+                        Because success shouldn't come at the expense of your time.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coming Soon / CTA Section -->
+        <section class="py-20 md:py-28">
+            <div class="container mx-auto px-4 text-center">
+                <div class="fade-in">
+                    <h2 class="text-3xl font-bold text-foreground md:text-4xl">
+                        Coming Soon
+                    </h2>
+                </div>
+                <div class="fade-in delay-100">
+                    <p class="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+                        We're launching soon and inviting a limited number of loan officers to
+                        join our founding group.
+                    </p>
+                </div>
+                <div class="fade-in delay-200">
+                    <div class="mx-auto mt-8 max-w-md rounded-xl border bg-card p-8 shadow-sm">
+                        <p class="mb-4 font-medium text-foreground">
+                            Join the waitlist to receive:
+                        </p>
+                        <ul class="space-y-3 text-left">
+                            <li class="flex items-center gap-3">
+                                <svg class="flex-shrink-0 text-accent" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                <span class="text-muted-foreground">
+                                    Early access to the platform
+                                </span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="flex-shrink-0 text-accent" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                <span class="text-muted-foreground">Founder pricing</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="flex-shrink-0 text-accent" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                <span class="text-muted-foreground">
+                                    Product updates and launch details
+                                </span>
+                            </li>
+                        </ul>
+                        <button class="btn btn-primary btn-lg mt-6 w-full" onclick="openModal()">
+                            Get Early Access
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="border-t bg-background py-8">
+            <div class="container mx-auto px-4 text-center">
+                <div class="fade-in">
+                    <img src="src/assets/offer-ready-logo.png" alt="Offer Ready" class="logo-footer" />
+                    <p class="text-2xl font-bold text-primary">Be Offer Ready.</p>
+                    <p class="mt-4 text-sm text-muted-foreground">
+                        © <span id="current-year"></span> Offer Ready. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Waitlist Modal -->
+    <div id="waitlistModal" class="modal-overlay">
+        <div class="modal-content">
+            <!-- Success State -->
+            <div id="successState" style="display: none;">
+                <div class="flex flex-col items-center py-8 text-center">
+                    <div class="mb-4 rounded-full bg-accent/10 p-3">
+                        <svg class="text-accent" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <div class="modal-header">
+                        <h2 class="modal-title">You're on the list!</h2>
+                        <p class="modal-description">
+                            Thanks for joining our waitlist. We'll be in touch soon with
+                            early access details and founder pricing.
+                        </p>
+                    </div>
+                    <button class="btn btn-primary mt-6" onclick="closeModal()">
+                        Done
+                    </button>
+                </div>
+            </div>
+
+            <!-- Form State -->
+            <div id="formState">
+                <div class="modal-header">
+                    <h2 class="modal-title">Join the Waitlist</h2>
+                    <p class="modal-description">
+                        Be among the first to experience Offer Ready. Get early access
+                        and exclusive founder pricing.
+                    </p>
+                </div>
+                <form id="waitlistForm" class="mt-4 space-y-4">
+                    <div class="space-y-2">
+                        <label for="name" class="label">Full Name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            class="input"
+                            placeholder="Jane Smith"
+                        />
+                        <p id="nameError" class="text-sm text-destructive" style="display: none;"></p>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="email" class="label">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            class="input"
+                            placeholder="jane@example.com"
+                        />
+                        <p id="emailError" class="text-sm text-destructive" style="display: none;"></p>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="phone" class="label">Phone Number</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            class="input"
+                            placeholder="(555) 123-4567"
+                        />
+                        <p id="phoneError" class="text-sm text-destructive" style="display: none;"></p>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg w-full">
+                        Get Early Access
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Current year for footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => observer.observe(el));
+        });
+
+        // Modal Functions
+        function openModal() {
+            document.getElementById('waitlistModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('waitlistModal').classList.remove('open');
+            document.body.style.overflow = '';
+
+            // Reset form after close animation
+            setTimeout(() => {
+                document.getElementById('formState').style.display = 'block';
+                document.getElementById('successState').style.display = 'none';
+                document.getElementById('waitlistForm').reset();
+                clearErrors();
+            }, 300);
+        }
+
+        // Close modal on overlay click
+        document.getElementById('waitlistModal').addEventListener('click', (e) => {
+            if (e.target.id === 'waitlistModal') {
+                closeModal();
+            }
+        });
+
+        // Form Validation
+        function clearErrors() {
+            ['nameError', 'emailError', 'phoneError'].forEach(id => {
+                document.getElementById(id).style.display = 'none';
+                document.getElementById(id).textContent = '';
+            });
+            ['name', 'email', 'phone'].forEach(id => {
+                document.getElementById(id).classList.remove('error');
+            });
+        }
+
+        function showError(field, message) {
+            const errorElement = document.getElementById(field + 'Error');
+            const inputElement = document.getElementById(field);
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            inputElement.classList.add('error');
+        }
+
+        function validateForm(formData) {
+            clearErrors();
+            let isValid = true;
+
+            // Name validation
+            if (!formData.name.trim()) {
+                showError('name', 'Name is required');
+                isValid = false;
+            }
+
+            // Email validation
+            if (!formData.email.trim()) {
+                showError('email', 'Email is required');
+                isValid = false;
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+                showError('email', 'Please enter a valid email');
+                isValid = false;
+            }
+
+            // Phone validation
+            if (!formData.phone.trim()) {
+                showError('phone', 'Phone number is required');
+                isValid = false;
+            } else if (!/^[\d\s\-\+\(\)]{10,}$/.test(formData.phone)) {
+                showError('phone', 'Please enter a valid phone number');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Form Submission
+        document.getElementById('waitlistForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value
+            };
+
+            if (validateForm(formData)) {
+                try {
+                    // Submit to webhook
+                    await fetch('http://www.myOfferReady.com/index.cfm?event=promo', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            name: formData.name.trim(),
+                            email: formData.email.trim(),
+                            phone: formData.phone.trim(),
+                        }),
+                        mode: 'no-cors',
+                    });
+                } catch (error) {
+                    console.error('Failed to submit to webhook:', error);
+                }
+
+                // Show success state
+                document.getElementById('formState').style.display = 'none';
+                document.getElementById('successState').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
