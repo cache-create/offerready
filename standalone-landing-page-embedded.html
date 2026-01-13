@@ -325,6 +325,146 @@
             transform: translateY(0);
         }
 
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            max-width: 900px;
+            margin: 3rem auto 2rem;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            background-color: hsl(var(--card));
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 500ms ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.95);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: all 200ms;
+            z-index: 10;
+        }
+
+        .carousel-nav:hover {
+            background-color: rgba(255, 255, 255, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-nav.prev {
+            left: 1rem;
+        }
+
+        .carousel-nav.next {
+            right: 1rem;
+        }
+
+        .carousel-nav svg {
+            color: hsl(var(--primary));
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1.5rem 1rem;
+            background-color: hsl(var(--card));
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: hsl(var(--muted));
+            border: 2px solid hsl(var(--border));
+            cursor: pointer;
+            transition: all 300ms;
+        }
+
+        .carousel-dot.active {
+            background-color: hsl(var(--primary));
+            border-color: hsl(var(--primary));
+            transform: scale(1.2);
+        }
+
+        .carousel-dot:hover:not(.active) {
+            background-color: hsl(var(--primary) / 0.5);
+        }
+
+        .carousel-label {
+            text-align: center;
+            padding: 0.75rem 1rem;
+            background-color: hsl(var(--secondary));
+            font-weight: 500;
+            color: hsl(var(--foreground));
+            border-top: 1px solid hsl(var(--border));
+        }
+
+        @media (max-width: 768px) {
+            .carousel-nav {
+                width: 32px;
+                height: 32px;
+            }
+
+            .carousel-nav.prev {
+                left: 0.5rem;
+            }
+
+            .carousel-nav.next {
+                right: 0.5rem;
+            }
+
+            .carousel-dots {
+                padding: 1rem;
+                gap: 0.5rem;
+            }
+
+            .carousel-dot {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
         /* Responsive Grid */
         @media (min-width: 640px) {
             .sm\:flex-row { flex-direction: row; }
@@ -536,6 +676,49 @@
                         How It Works
                     </h2>
                 </div>
+
+                <!-- Screenshot Carousel -->
+                <div class="fade-in delay-100">
+                    <div class="carousel-container">
+                        <div class="carousel-wrapper">
+                            <div class="carousel-track" id="carouselTrack">
+                                <!-- Slide 1 -->
+                                <div class="carousel-slide">
+                                    <img src="src/assets/step-1-manage-rates.png" alt="Step 1: Manage loan approval rates and set rules" />
+                                </div>
+                                <!-- Slide 2 -->
+                                <div class="carousel-slide">
+                                    <img src="src/assets/step-2-approval-letter.png" alt="Step 2: Instantly generated approval letter" />
+                                </div>
+                                <!-- Slide 3 -->
+                                <div class="carousel-slide">
+                                    <img src="src/assets/step-3-organized.png" alt="Step 3: Organized loan approval details" />
+                                </div>
+                            </div>
+
+                            <!-- Navigation Arrows -->
+                            <button class="carousel-nav prev" onclick="moveCarousel(-1)" aria-label="Previous slide">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                            </button>
+                            <button class="carousel-nav next" onclick="moveCarousel(1)" aria-label="Next slide">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                            </button>
+                        </div>
+
+                        <!-- Step Label -->
+                        <div class="carousel-label" id="carouselLabel">
+                            Step 1: You set the rules
+                        </div>
+
+                        <!-- Navigation Dots -->
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" onclick="goToSlide(0)" aria-label="Go to step 1"></button>
+                            <button class="carousel-dot" onclick="goToSlide(1)" aria-label="Go to step 2"></button>
+                            <button class="carousel-dot" onclick="goToSlide(2)" aria-label="Go to step 3"></button>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="mt-12 grid gap-8 grid-cols-1 md:grid-cols-3">
                     <!-- Step 1 -->
                     <div class="fade-in delay-100">
@@ -773,6 +956,77 @@
             const fadeElements = document.querySelectorAll('.fade-in');
             fadeElements.forEach(el => observer.observe(el));
         });
+
+        // Carousel Functionality
+        let currentSlide = 0;
+        const totalSlides = 3;
+        let carouselInterval;
+
+        const slideLabels = [
+            'Step 1: You set the rules',
+            'Step 2: Letters are generated instantly',
+            'Step 3: Everything stays organized'
+        ];
+
+        function updateCarousel() {
+            const track = document.getElementById('carouselTrack');
+            const dots = document.querySelectorAll('.carousel-dot');
+            const label = document.getElementById('carouselLabel');
+
+            // Move carousel
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+            // Update dots
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+
+            // Update label
+            label.textContent = slideLabels[currentSlide];
+        }
+
+        function moveCarousel(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel();
+            resetCarouselInterval();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+            resetCarouselInterval();
+        }
+
+        function autoAdvanceCarousel() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function resetCarouselInterval() {
+            clearInterval(carouselInterval);
+            carouselInterval = setInterval(autoAdvanceCarousel, 5000);
+        }
+
+        // Start auto-advance on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            carouselInterval = setInterval(autoAdvanceCarousel, 5000);
+        });
+
+        // Pause auto-advance on hover
+        const carouselContainer = document.querySelector('.carousel-container');
+        if (carouselContainer) {
+            carouselContainer.addEventListener('mouseenter', () => {
+                clearInterval(carouselInterval);
+            });
+
+            carouselContainer.addEventListener('mouseleave', () => {
+                resetCarouselInterval();
+            });
+        }
 
         // Modal Functions
         function openModal() {
