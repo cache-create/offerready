@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { WaitlistModal } from "@/components/WaitlistModal";
+import { ScreenshotCarousel } from "@/components/ScreenshotCarousel";
 import { Clock, Shield, Star, Settings, FileText, ClipboardList, CheckCircle } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import offerReadyLogo from "@/assets/offer-ready-logo.png";
@@ -189,6 +190,12 @@ const Index = () => {
               How It Works
             </h2>
           </AnimatedSection>
+
+          {/* Screenshot Carousel */}
+          <AnimatedSection delay={100}>
+            <ScreenshotCarousel />
+          </AnimatedSection>
+
           <div className="mt-12 grid gap-8 md:grid-cols-3">
             {/* Step 1 */}
             <AnimatedSection delay={100}>
