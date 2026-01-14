@@ -58,7 +58,7 @@ export const ScreenshotCarousel = () => {
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Carousel Wrapper */}
-      <div className="relative w-full" style={{ paddingBottom: "50%" }}>
+      <div className="relative w-full" style={{ paddingBottom: "40%" }}>
         {/* Carousel Track */}
         <div className="absolute inset-0 overflow-hidden">
           <div
