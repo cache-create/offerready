@@ -303,6 +303,9 @@
             width: 4rem;
             height: 4rem;
             border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* Gradient Background */
@@ -326,14 +329,32 @@
         }
 
         /* Carousel Styles */
+        .how-it-works-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .how-it-works-content {
+                grid-template-columns: 2fr 1fr;
+                gap: 3rem;
+            }
+        }
+
         .carousel-container {
             position: relative;
-            max-width: 900px;
-            margin: 3rem auto 2rem;
             border-radius: 0.75rem;
             overflow: hidden;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
             background-color: hsl(var(--card));
+        }
+
+        .steps-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         .carousel-wrapper {
@@ -431,14 +452,7 @@
             background-color: hsl(var(--primary) / 0.5);
         }
 
-        .carousel-label {
-            text-align: center;
-            padding: 0.75rem 1rem;
-            background-color: hsl(var(--secondary));
-            font-weight: 500;
-            color: hsl(var(--foreground));
-            border-top: 1px solid hsl(var(--border));
-        }
+
 
         /* Clickable Step Cards */
         .step-card {
@@ -698,9 +712,10 @@
                     </h2>
                 </div>
 
-                <!-- Screenshot Carousel -->
+                <!-- Screenshot Carousel and Steps -->
                 <div class="fade-in delay-100">
-                    <div class="carousel-container">
+                    <div class="how-it-works-content">
+                        <div class="carousel-container">
                         <div class="carousel-wrapper">
                             <div class="carousel-track" id="carouselTrack">
                                 <!-- Slide 1 -->
@@ -725,22 +740,16 @@
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                             </button>
                         </div>
-
-                        <!-- Step Label -->
-                        <div class="carousel-label" id="carouselLabel">
-                            Step 1: You set the rules
-                        </div>
-
-                        <!-- Navigation Dots -->
+<!-- Navigation Dots -->
                         <div class="carousel-dots">
                             <button class="carousel-dot active" onclick="goToSlide(0)" aria-label="Go to step 1"></button>
                             <button class="carousel-dot" onclick="goToSlide(1)" aria-label="Go to step 2"></button>
                             <button class="carousel-dot" onclick="goToSlide(2)" aria-label="Go to step 3"></button>
                         </div>
-                    </div>
-                </div>
+                        </div>
 
-                <div class="mt-12 grid gap-8 grid-cols-1 md:grid-cols-3">
+                        <!-- Step Cards Vertical -->
+                        <div class="steps-vertical">
                     <!-- Step 1 -->
                     <div class="fade-in delay-100">
                         <div class="step-card card text-center h-full active" onclick="goToSlide(0)" id="stepCard0">
@@ -794,6 +803,8 @@
                                 Every action is logged with a clear audit trail, so you're always
                                 protected.
                             </p>
+                        </div>
+                    </div>
                         </div>
                     </div>
                 </div>
@@ -983,16 +994,9 @@
         const totalSlides = 3;
         let carouselInterval;
 
-        const slideLabels = [
-            'Step 1: You set the rules',
-            'Step 2: Letters are generated instantly',
-            'Step 3: Everything stays organized'
-        ];
-
         function updateCarousel() {
             const track = document.getElementById('carouselTrack');
             const dots = document.querySelectorAll('.carousel-dot');
-            const label = document.getElementById('carouselLabel');
             const stepCards = document.querySelectorAll('.step-card');
 
             // Move carousel
@@ -1015,9 +1019,6 @@
                     card.classList.remove('active');
                 }
             });
-
-            // Update label
-            label.textContent = slideLabels[currentSlide];
         }
 
         function moveCarousel(direction) {
