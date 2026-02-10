@@ -330,17 +330,7 @@
 
         /* Carousel Styles */
         .how-it-works-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
             margin-top: 3rem;
-        }
-
-        @media (min-width: 768px) {
-            .how-it-works-content {
-                grid-template-columns: 2fr 1fr;
-                gap: 3rem;
-            }
         }
 
         .carousel-container {
@@ -352,9 +342,16 @@
         }
 
         .steps-vertical {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .steps-vertical {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
         }
 
         .carousel-wrapper {
@@ -878,9 +875,11 @@
                             <button class="carousel-dot" onclick="goToSlide(2)" aria-label="Go to step 3"></button>
                         </div>
                         </div>
+                    </div>
+                </div>
 
-                        <!-- Step Cards Vertical -->
-                        <div class="steps-vertical">
+                <!-- Step Cards -->
+                <div class="steps-vertical">
                     <!-- Step 1 -->
                     <div class="fade-in delay-100">
                         <div class="step-card card text-center h-full active" onclick="goToSlide(0)" id="stepCard0">
@@ -936,32 +935,6 @@
                             </p>
                         </div>
                     </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Built by Loan Officers Section -->
-        <section class="bg-secondary py-20 md:py-28">
-            <div class="container mx-auto px-4 text-center">
-                <div class="fade-in">
-                    <h2 class="text-3xl font-bold text-foreground md:text-4xl">
-                        Built by Loan Officers. Powered by Real Life.
-                    </h2>
-                </div>
-                <div class="fade-in delay-100">
-                    <p class="mx-auto mt-6 max-w-3xl text-lg text-muted-foreground">
-                        Offer Ready was created by top-producing loan officers and working moms
-                        who understand the pressure of always being "on." We built the platform
-                        we wished existed—one that brings speed, simplicity, and balance back
-                        into the mortgage process.
-                    </p>
-                </div>
-                <div class="fade-in delay-200">
-                    <p class="mx-auto mt-4 max-w-2xl text-lg font-medium text-primary">
-                        Because success shouldn't come at the expense of your time.
-                    </p>
                 </div>
             </div>
         </section>
