@@ -214,7 +214,7 @@ const Index = () => {
             <ScreenshotCarousel />
           </AnimatedSection>
 
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
+          <div className="mx-auto mt-8 max-w-4xl grid gap-8 md:grid-cols-3">
             {/* Step 1 */}
             <AnimatedSection delay={100}>
               <div className="relative text-center">
