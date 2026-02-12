@@ -274,30 +274,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Built by Loan Officers Section */}
-      <section className="bg-secondary py-20 md:py-28">
-        <div className="container mx-auto px-4 text-center">
-          <AnimatedSection>
-            <h2 className="text-3xl font-bold text-foreground md:text-4xl font-heading">
-              Built by Loan Officers. Powered by Real Life.
-            </h2>
-          </AnimatedSection>
-          <AnimatedSection delay={100}>
-            <p className="mx-auto mt-6 max-w-3xl text-lg text-muted-foreground">
-              Offer Ready was created by top-producing loan officers and working moms
-              who understand the pressure of always being "on." We built the platform
-              we wished existed—one that brings speed, simplicity, and balance back
-              into the mortgage process.
-            </p>
-          </AnimatedSection>
-          <AnimatedSection delay={200}>
-            <p className="mx-auto mt-4 max-w-2xl text-lg font-medium text-primary">
-              Because success shouldn't come at the expense of your time.
-            </p>
-          </AnimatedSection>
-        </div>
-      </section>
-
       {/* Why We Built Offer Ready Section */}
       <section className="py-20 md:py-28">
         <div className="container mx-auto px-4">
