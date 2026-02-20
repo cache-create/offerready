@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { WaitlistModal } from "@/components/WaitlistModal";
 import { ScreenshotCarousel } from "@/components/ScreenshotCarousel";
-import { Clock, Shield, Star, Settings, FileText, ClipboardList, CheckCircle, Quote, ExternalLink } from "lucide-react";
+import { Clock, Shield, Star, Settings, FileText, ClipboardList, CheckCircle, Quote, ChevronDown, LogIn, Play } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import offerReadyLogo from "@/assets/offer-ready-logo.png";
 
@@ -34,6 +34,7 @@ const AnimatedSection = ({
 
 const Index = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-background font-sans">
@@ -45,13 +46,41 @@ const Index = () => {
             alt="Offer Ready"
             className="w-auto max-w-[120px] md:max-w-[150px] h-auto object-contain"
           />
-          <a
-            href="#resources"
-            className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Resources
-            <ExternalLink className="h-4 w-4" />
-          </a>
+          <div className="flex items-center gap-3">
+            {/* Resources Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setIsResourcesOpen(true)}
+              onMouseLeave={() => setIsResourcesOpen(false)}
+            >
+              <button
+                onClick={() => setIsResourcesOpen((prev) => !prev)}
+                className="inline-flex items-center gap-1.5 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+              >
+                Resources
+                <ChevronDown className={`h-4 w-4 transition-transform ${isResourcesOpen ? "rotate-180" : ""}`} />
+              </button>
+              {isResourcesOpen && (
+                <div className="absolute right-0 mt-1 w-48 rounded-md border bg-background shadow-lg">
+                  <a
+                    href="#"
+                    className="flex items-center gap-2 px-4 py-2.5 text-sm text-foreground transition-colors hover:bg-secondary rounded-md"
+                  >
+                    <Play className="h-4 w-4" />
+                    Demo Video
+                  </a>
+                </div>
+              )}
+            </div>
+            {/* Log In Button */}
+            <a
+              href="#"
+              className="inline-flex items-center gap-1.5 rounded-md border border-primary px-4 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+            >
+              <LogIn className="h-4 w-4" />
+              Log In
+            </a>
+          </div>
         </div>
       </nav>
 
